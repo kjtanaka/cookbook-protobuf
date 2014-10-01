@@ -1,0 +1,35 @@
+#%Module1.0###########################################################
+proc moduleVersion { } {
+        if { ! [regexp {[^/]*$} [module-info name] ver] } {
+                puts stderr "Internal modulefile error"
+        }
+        return $ver
+}
+
+set ver        [moduleVersion]
+set path       <%= @prefix %>
+
+proc ModulesHelp { } {
+   puts stderr "This module adds Protocol Buffers to various paths"
+   puts stderr "See https://code.google.com/p/protobuf/ for further details"
+}
+
+module-whatis   "Sets up Protocol Buffers in your environment"
+
+conflict parallel
+
+prepend-path PATH $path/bin
+prepend-path LD_LIBRARY $path/lib
+prepend-path MANPATH $path/share/man
+
+if [ module-info mode load ] {
+        puts stderr "Protocol Buffers version $ver loaded"
+}
+
+if [ module-info mode switch2 ] {
+        puts stderr "Protocol Buffers version $ver loaded"
+}
+
+if [ module-info mode remove ] {
+        puts stderr "Protocol Buffers version $ver unloaded"
+}

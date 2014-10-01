@@ -20,3 +20,7 @@ suites:
     run_list:
       - recipe[protobuf::default]
     attributes:
+  - name: modulefile
+    run_list:
+      - recipe[protobuf::modulefile]
+    attributes:

@@ -18,3 +18,31 @@
 #
 
 include_recipe 'build-essential'
+package 'wget'
+
+directory node['protobuf']['download_dir']
+
+remote_file "#{node['protobuf']['download_dir']}/protobuf-#{node['protobuf']['version']}.tar.gz" do
+  source node['protobuf']['download_url']
+  owner "root"
+  group "root"
+  mode "0644"
+end
+
+execute "extract_protobuf_tarball" do
+  user "root"
+  cwd node['protobuf']['download_dir']
+  command "tar zxf protobuf-#{node['protobuf']['version']}.tar.gz"
+  creates node['protobuf']['version']
+end
+
+bash "install_protobuf" do
+  user "root"
+  cwd "#{node['protobuf']['download_dir']}/protobuf-#{node['protobuf']['version']}"
+  code <<-EOH
+  ./configure --prefix=#{node['protobuf']['prefix']}
+  make
+  make install
+  EOH
+  creates node['protobuf']['prefix']
+end

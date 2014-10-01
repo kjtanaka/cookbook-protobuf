@@ -1,46 +1,37 @@
 protobuf Cookbook
 =================
-TODO: Enter the cookbook description here.
-
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+This cookbook installs protobuf from source.
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
 
-e.g.
-#### packages
-- `toaster` - protobuf needs toaster to brown your bagel.
+#### Platforms
+- CentOS 6 and Redhat 6 are supported and tested.
+
+#### Cookbook
+- `build-essential`
 
 Attributes
 ----------
-TODO: List your cookbook attributes here.
-
-e.g.
 #### protobuf::default
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['protobuf']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
+- `['protobuf']['version']`
+- `['protobuf']['version']`
+- `['protobuf']['download_url']`
+- `['protobuf']['download_dir']`
+- `['protobuf']['prefix']`
+#### protobuf::modulefile
+- `['protobuf']['default_version']`
+- `['protobuf']['modulefile_dir']`
 
 Usage
 -----
 #### protobuf::default
-TODO: Write usage instructions for each cookbook.
+Add cookbook `protobuf` on `Berkshelf`:
+```
+cookbook 'protobuf', git: 'https://github.com/kjtanaka/cookbook-protobuf.git'
+```
 
-e.g.
-Just include `protobuf` in your node's `run_list`:
+And then, include `protobuf` in your node's `run_list`:
 
 ```json
 {
@@ -51,11 +42,27 @@ Just include `protobuf` in your node's `run_list`:
 }
 ```
 
+#### protobuf::default
+Add cookbook `environment-modules` on `Berkshelf` file:
+```
+cookbook 'environment-modules', git: 'https://github.com/kjtanaka/cookbook-environment-modules.git'
+```
+
+And then, add `recipe[environment-modules]` and `recipe[protobuf::modulefile]` in your node's `run_list`:
+
+```json
+{
+  "name":"my_node",
+  "run_list": [
+    "recipe[protobuf]",
+    "recipe[environment-modules]",
+    "recipe[protobuf::modulefile]"
+  ]
+}
+```
+
 Contributing
 ------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
-
-e.g.
 1. Fork the repository on Github
 2. Create a named feature branch (like `add_component_x`)
 3. Write your change
@@ -65,4 +72,20 @@ e.g.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+- Author:: Koji Tanaka (<kj.tanaka@gmail.com>)
+
+```text
+Copyright:: 2014 FutureGrid Project, Indiana University
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```

@@ -33,7 +33,7 @@ execute "extract_protobuf_tarball" do
   user "root"
   cwd node['protobuf']['download_dir']
   command "tar zxf protobuf-#{node['protobuf']['version']}.tar.gz"
-  creates node['protobuf']['version']
+  creates "protobuf-#{node['protobuf']['version']}"
 end
 
 bash "install_protobuf" do

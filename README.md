@@ -13,18 +13,21 @@ Requirements
 
 Attributes
 ----------
+
 #### protobuf::default
 - `['protobuf']['version']`
 - `['protobuf']['version']`
 - `['protobuf']['download_url']`
 - `['protobuf']['download_dir']`
 - `['protobuf']['prefix']`
+
 #### protobuf::modulefile
 - `['protobuf']['default_version']`
 - `['protobuf']['modulefile_dir']`
 
 Usage
 -----
+
 #### protobuf::default
 Add cookbook `protobuf` on `Berkshelf`:
 ```
@@ -43,6 +46,7 @@ And then, include `protobuf` in your node's `run_list`:
 ```
 
 #### protobuf::default
+
 Add cookbook `environment-modules` on `Berkshelf` file:
 ```
 cookbook 'environment-modules', git: 'https://github.com/kjtanaka/cookbook-environment-modules.git'
@@ -63,6 +67,7 @@ And then, add `recipe[environment-modules]` and `recipe[protobuf::modulefile]` i
 
 Contributing
 ------------
+
 1. Fork the repository on Github
 2. Create a named feature branch (like `add_component_x`)
 3. Write your change
@@ -72,6 +77,7 @@ Contributing
 
 License and Authors
 -------------------
+
 - Author:: Koji Tanaka (<kj.tanaka@gmail.com>)
 
 ```text
